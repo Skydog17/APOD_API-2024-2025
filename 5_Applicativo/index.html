@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="APOD by Kamil Siddiqui">
+        <meta name="author" content="Kamil Siddiqui">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Astronomy Picture of the Day</title>
+        <script src="js/script.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body onload="richiesta('')">
+        <div id="contenitore">
+            <header>
+                <button id="apriMenu" onclick="openMenu()">Menu</button>
+                <div id="menu">
+                    <button>Login</button><br><br>
+                    <button>Preferiti</button><br><br>
+                    <button>Cronologia</button>
+                </div>
+                <h1 class="title">Astronomy Picture of the day</h1>
+                <h2 class="title">Ogni giorno un immagine diversa,<br>scopri il cosmo!</h2>
+                <hr>
+            </header>
+            <div id="immagini">
+                <h1 id="titolo_img"></h1>
+                <h3 id="data_immagine"></h3>
+                <img class="smallerImg" id="immagine-1" onclick="aprImmagine('-1')">
+                <img id="immagine">
+                <img class="smallerImg" id="immagine1" onclick="aprImmagine('1')">
+            </div>
+                
+            <div id="desc">
+                <p id="descrizione_immagine"></p>
+            </div>
+    
+            <footer>
+                <hr>
+                <h2><a href="#">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <button onclick="apriFiltro()">Search</button> | <a href="#">&#8594;</a></h2>
+                <div id="filtro">
+                    <p>Inserire la data con il seguente formato:<br> yyyy-mm-dd</p>
+                    <label>Data <label><input type='text' id='dataFiltro'><button onclick="avviaRicerca()">Cerca</button>
+                    <br><br>
+                </div>
+            </footer>
+        </div>
+    </body>
+
+</html>

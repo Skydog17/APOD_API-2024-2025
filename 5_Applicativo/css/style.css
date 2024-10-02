@@ -1,0 +1,113 @@
+/** CSS RELATIVO AI TAG**/
+
+body{
+    margin:0px;
+    color:#ADD8E6;
+    background: url("../img/background.png");
+    background-repeat: repeat;
+}
+
+header{
+    text-align: left;
+    margin:0px;
+}
+
+footer{
+    text-align: center;
+    margin:0;
+    position: relative;
+    bottom: 5px;
+    width: 100%;
+    height: 100px; 
+}
+
+a{
+    text-decoration: none; 
+}
+
+img{
+    height: auto;
+    width: auto;
+    margin:0%;
+    max-width: 600px;
+    max-height: 400px;
+}
+
+button{
+    background-color: #1c1c84;
+    height: 35px;
+    color:#ADD8E6;
+}
+
+/**CSS RELATIVO ALLE CLASSI**/
+
+.title{
+    text-align: center;
+}
+
+.smallerImg{
+    transform: scale(0.8);
+    max-width: 400px;
+    max-height: 300px;
+    opacity: 0.4;
+}
+
+/** CSS RELATIVO AGLI ID**/
+
+#desc{
+    text-align: center;
+    padding: 10px 75px 25px 75px; /** Top Right Bottom Left**/
+}
+
+#filtro{
+    visibility: hidden;
+}
+
+#contenitore{
+    position: relative;
+    min-height: 100vh;
+}
+
+#immagini{
+    text-align: center;
+    vertical-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#video-1{
+    visibility: hidden;
+}
+
+#video1{
+    visibility: hidden;
+}
+
+#video{
+    visibility: hidden;
+}
+
+#apriMenu{
+    height: 20px;
+}
+
+#menu{
+    position: absolute;
+    left: 0px;
+    top:20px;
+    padding:15px;
+    background-color: #000035;
+    border: 5px solid black;
+    z-index: 1;
+    visibility: hidden;
+}
+
+#menu button{
+    width: 100px;
+}
+
+/**HOVER**/
+
+.smallerImg:hover{
+    opacity: 1.0;
+}
