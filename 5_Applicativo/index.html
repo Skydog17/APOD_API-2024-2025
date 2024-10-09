@@ -6,7 +6,9 @@
         <meta name="author" content="Kamil Siddiqui">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Astronomy Picture of the Day</title>
-        <script src="js/script.js"></script>
+        <script src="js/format.js"></script>    <!-- Javascript dedicato alla gestione della formatazione della page-->
+        <script src="js/api.js"></script>       <!-- Javascript dedicato alla gestione dell'API-->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/style.css">
     </head>
 
@@ -15,7 +17,7 @@
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
-                    <button>Login</button><br><br>
+                    <a href="login.html"><button>Login</button></a><br><br>
                     <button>Preferiti</button><br><br>
                     <button>Cronologia</button>
                 </div>
@@ -37,7 +39,7 @@
     
             <footer>
                 <hr>
-                <h2><a href="#">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <button onclick="apriFiltro()">Search</button> | <a href="#">&#8594;</a></h2>
+                <h2><a onclick="aprImmagine(-1)">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <a onclick="richiesta('')">Pic of Today</a> | <button onclick="apriFiltro()">Search</button> | <a onclick="aprImmagine(1)">&#8594;</a></h2>
                 <div id="filtro">
                     <p>Inserire la data con il seguente formato:<br> yyyy-mm-dd</p>
                     <label>Data <label><input type='text' id='dataFiltro'><button onclick="avviaRicerca()">Cerca</button>
@@ -46,5 +48,4 @@
             </footer>
         </div>
     </body>
-
 </html>

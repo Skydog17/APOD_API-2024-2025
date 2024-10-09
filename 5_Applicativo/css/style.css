@@ -52,6 +52,11 @@ button{
     opacity: 0.4;
 }
 
+.decorato{
+    text-decoration: underline; 
+    color: #ADD8E6;
+}
+
 /** CSS RELATIVO AGLI ID**/
 
 #desc{
@@ -106,8 +111,31 @@ button{
     width: 100px;
 }
 
+#container{
+    text-align: center;
+    width:100%;
+    padding: 30px 0px;
+}
+
+#login{
+    width: 15%;
+    margin: auto;
+    padding: 30px;
+    border: #ADD8E6 solid;
+    background-color: #000035;
+}
+
+#btnLogin{
+    width: 120px;
+}
+
 /**HOVER**/
 
 .smallerImg:hover{
     opacity: 1.0;
+}
+
+button:hover{
+    background-color: #10104F;
+    transform: scale(0.95);
 }
