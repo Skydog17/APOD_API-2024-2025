@@ -1,3 +1,7 @@
+<?php
+session_start();
+if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,12 +21,13 @@
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
-                    <a href="login.html"><button>Login</button></a><br><br>
+                    <!--<a href="index.php"><button>Login</button></a><br><br>-->
+                    <a href="logout.php"><button>Logout</button></a><br><br>
                     <button>Preferiti</button><br><br>
                     <button>Cronologia</button>
                 </div>
                 <h1 class="title">Astronomy Picture of the day</h1>
-                <h2 class="title">Ogni giorno un immagine diversa,<br>scopri il cosmo!</h2>
+                <h2 class="title">Ciao <?php echo $_SESSION['Username']; ?>,<br>scopri il cosmo!</h2>
                 <hr>
             </header>
             <div id="immagini">
@@ -49,3 +54,11 @@
         </div>
     </body>
 </html>
+
+<?php
+}
+else{
+    header("Location: index.php");
+    exit();
+}
+?>

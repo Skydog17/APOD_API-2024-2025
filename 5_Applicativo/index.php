@@ -5,7 +5,7 @@
         <meta name="description" content="APOD by Kamil Siddiqui">
         <meta name="author" content="Kamil Siddiqui">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Astronomy Picture of the Day</title>
+        <title>Login</title>
         <script src="js/format.js"></script>    <!-- Javascript dedicato alla gestione della formatazione della page-->
         <script src="js/api.js"></script>       <!-- Javascript dedicato alla gestione dell'API-->
         <link rel="icon" type="image/x-icon" href="img/favicon.ico">
@@ -17,7 +17,7 @@
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
-                    <a href="index.html"><button>Home</button></a><br><br>
+                    <a href="home.php"><button>Home</button></a><br><br>
                     <button>Preferiti</button><br><br>
                     <button>Cronologia</button>
                 </div>
@@ -25,30 +25,27 @@
                 <h2 class="title">Fai il login e scopri il cosmo!</h2>
                 <hr>
             </header>
+
             <div id="container">
-                <div id="login">
-                <label>Username</label>
-                    <input type="text" placeholder="Enter Username" name="uname" required>
+                <form action="login.php" method="post" id="login">
+                    <label>Username</label>
+                    <input type="text" placeholder="Enter Username" name="uname">
                     <br><br>
                     <label>Password</label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <input type="password" placeholder="Enter Password" name="password">
                     <br><br>
-                    <button id="btnLogin" type="submit">Login</button><br><br>
-                    <a class="decorato" href="index.html">Oppure continua come Guest</a>
-                </div>
-            </div>
+                    
+                    <!-- QUESTA SEZIONE SERVE PER UN EVENTUALE DISPLAY DEGLI ERRORI -->
+                    <?php if(isset($_GET['error'])) { ?>
+                        <p class="error"> <?php echo $_GET['error'];?></p>
+                    <?php } ?> 
 
+                    <button id="btnLogin" type="submit">Login</button><br><br>
+                </form>     
+            <div>
             <footer>
                 <hr>
                 <h2>Astronomy Picture of the day - Kamil Siddiqui - I3AC</h2>
-                <div id="filtro">
-                    <p>Inserire la data con il seguente formato:<br> yyyy-mm-dd</p>
-                    <label>Data <label><input type='text' id='dataFiltro'><button onclick="avviaRicerca()">Cerca</button>
-                    <br><br>
-                </div>
-                <div id="errori">
-                    
-                </div>
             </footer>
         </div>
     </body>

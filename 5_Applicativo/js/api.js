@@ -46,6 +46,7 @@ function richiesta(d){ //d sarà una stringa
             document.getElementById("titolo_img").textContent = response1.title; //modifica il titolo
             document.getElementById("data_immagine").textContent = response1.date;
             document.getElementById("descrizione_immagine").textContent = response1.explanation;
+            //createImgVid(req1, 0)
         }
     })
 
@@ -65,7 +66,7 @@ function richiesta(d){ //d sarà una stringa
     req3.addEventListener("load", function(){
         if(req3.status == 200 && req3.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response3 = JSON.parse(req3.responseText); //JSON con la risposta
-            document.getElementById("immagine1").src = response3.url; //modifica il src dell'immagine
+            document.getElementById("immagine1").src = response3.url; //modifica il src dell'immagine //modifica il src dell'immagine
         }
     })
 }
@@ -126,33 +127,34 @@ function aprImmagine(num){
 
 
 /////////////////////////// Crea il tag img o video ///////////////////////////
-/**function createImgVid(r, num){
+function createImgVid(r, num){
+    var immagini ="";
     if(num == 0){
         if(r.media_type=="image"){
-            document.getElementById("immagini").innerHTML+="<img id='immagine'></img>"
+            immagini += "<img id='immagine'></img>";
         }
         else{
-            document.getElementById("immagini").innerHTML+="<video id ='immagine' width='auto' height='auto' controls> <source type='video/mp4'></video>";
+            immagini += "<video id ='immagine' width='auto' height='auto' controls> <source type='video/mp4'></video>";
         }
     }
 
     else if(num ==-1){
         if(r.media_type=="image"){
-            document.getElementById("immagini").innerHTML+="<img class='smallerImg' id='immagine-1' onclick='aprImmagine(-1)'>";
+            immagini+="<img class='smallerImg' id='immagine-1' onclick='aprImmagine(-1)'>";
         }
         else{
-            document.getElementById("immagini").innerHTML+="<video id ='immagine-1' width='auto' height='auto' controls onclick='aprImmagine(-1)'> <source type='video/mp4'></video>";
+            immagini+="<video id ='immagine-1' width='auto' height='auto' controls onclick='aprImmagine(-1)'> <source type='video/mp4'></video>";
         }
     }
 
     else if(num==1){
         if(r.media_type=="image"){
-            document.getElementById("immagini").innerHTML+="<img class='smallerImg' id='immagine1' onclick='aprImmagine(1)'></img>";
+            immagini+="<img class='smallerImg' id='immagine1' onclick='aprImmagine(1)'></img>";
         }
         else{
             var source = r.url;
-            document.getElementById("immagini").innerHTML+="<video id ='immagine1' width='auto' height='auto' controls onclick='aprImmagine(-1)'> <source src='"+source + "' type='video/mp4'></video>";
+            immagini+="<video id ='immagine1' width='auto' height='auto' controls onclick='aprImmagine(-1)'> <source src='"+source + "' type='video/mp4'></video>";
         }
     }
-    
-}*/
+    console.log(immagini)
+}
