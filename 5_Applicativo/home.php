@@ -1,7 +1,4 @@
-<?php
-session_start();
-if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
-?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +18,10 @@ if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
-                    <!--<a href="index.php"><button>Login</button></a><br><br>-->
+<?php
+    session_start();
+    if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
+?>
                     <a href="logout.php"><button>Logout</button></a><br><br>
                     <button>Preferiti</button><br><br>
                     <button>Cronologia</button>
@@ -30,11 +30,29 @@ if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
                 <h2 class="title">Ciao <?php echo $_SESSION['Username']; ?>,<br>scopri il cosmo!</h2>
                 <hr>
             </header>
+
+<?php
+}
+else{
+?>
+                    <a href="index.php"><button>Login</button></a><br>
+                    <h4>Per vedere Preferiti e Cronologia,<br> effettua il login!<h4>
+                </div>
+                <h1 class="title">Astronomy Picture of the day</h1>
+                <h2 class="title">Effettua il login e scopri il cosmo!</h2>
+                <hr>
+            </header>
+<?php
+}
+?>
             <div id="immagini">
                 <h1 id="titolo_img"></h1>
                 <h3 id="data_immagine"></h3>
+
                 <img class="smallerImg" id="immagine-1" onclick="aprImmagine('-1')">
+
                 <img id="immagine">
+
                 <img class="smallerImg" id="immagine1" onclick="aprImmagine('1')">
             </div>
                 
@@ -54,11 +72,3 @@ if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
         </div>
     </body>
 </html>
-
-<?php
-}
-else{
-    header("Location: index.php");
-    exit();
-}
-?>

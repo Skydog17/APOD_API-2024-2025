@@ -1,10 +1,6 @@
-INSERT INTO utente (Username, Password) VALUES("kamil",PASSWORD("Suedalp17"));
+INSERT INTO utente (Username, Password) VALUES("Kamil",PASSWORD("suedalp"));
 INSERT INTO utente (Username, Password) VALUES("Andrea",PASSWORD("SenseyAndy17"));
 INSERT INTO utente (Username, Password) VALUES("Seba",PASSWORD("Letsgo11"));
 INSERT INTO utente (Username, Password) VALUES("Bubu", PASSWORD("Radicchio13"));
-INSERT INTO utente (Username, Password) VALUES("Alex", "Padre");
-
-UPDATE utente SET Username = "Kamil" WHERE Username = "kamil";
-
-DELETE FROM utente WHERE Username = "Alex";
-INSERT INTO utente (Username, Password) VALUES("admin", PASSWORD("admin"));
+INSERT INTO utente (Username, Password) VALUES("Alex", PASSWORD("Kekko17"));
+INSERT INTO utente (Username, Password) VALUES("a", PASSWORD("a"));

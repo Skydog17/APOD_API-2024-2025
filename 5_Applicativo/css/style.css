@@ -21,6 +21,10 @@ footer{
     height: 100px; 
 }
 
+iframe{
+    visibility:visible;
+}
+
 a{
     text-decoration: none; 
 }
@@ -79,19 +83,6 @@ button{
     margin-top: 25px;
     margin-bottom: 25px;
 }
-
-#video-1{
-    visibility: hidden;
-}
-
-#video1{
-    visibility: hidden;
-}
-
-#video{
-    visibility: hidden;
-}
-
 #apriMenu{
     height: 20px;
 }
@@ -138,4 +129,9 @@ button{
 button:hover{
     background-color: #10104F;
     transform: scale(0.95);
+}
+
+button.disabled :hover{
+    background-color: #10104F;
+    transform: scale(1);
 }

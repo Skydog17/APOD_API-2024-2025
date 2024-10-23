@@ -15,33 +15,39 @@
     <body>
         <div id="contenitore">
             <header>
-                <button id="apriMenu" onclick="openMenu()">Menu</button>
-                <div id="menu">
-                    <a href="home.php"><button>Home</button></a><br><br>
-                    <button>Preferiti</button><br><br>
-                    <button>Cronologia</button>
-                </div>
                 <h1 class="title">Astronomy Picture of the day</h1>
                 <h2 class="title">Fai il login e scopri il cosmo!</h2>
                 <hr>
             </header>
 
             <div id="container">
-                <form action="login.php" method="post" id="login">
-                    <label>Username</label>
-                    <input type="text" placeholder="Enter Username" name="uname">
-                    <br><br>
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter Password" name="password">
-                    <br><br>
-                    
-                    <!-- QUESTA SEZIONE SERVE PER UN EVENTUALE DISPLAY DEGLI ERRORI -->
-                    <?php if(isset($_GET['error'])) { ?>
-                        <p class="error"> <?php echo $_GET['error'];?></p>
-                    <?php } ?> 
+                <div id ="login">
+                    <form action="login.php" method="post">
+                        <label>Username</label>
+                        <input type="text" placeholder="Enter Username" name="uname">
+                        <br><br>
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter Password" name="password">
+                        <br><br>
+                        
+                        <!-- QUESTA SEZIONE SERVE PER UN EVENTUALE DISPLAY DEGLI ERRORI -->
+                        <?php if(isset($_GET['error'])) { ?>
+                            <p class="error"> <?php echo $_GET['error'];?></p>
+                        <?php } ?> 
 
-                    <button id="btnLogin" type="submit">Login</button><br><br>
-                </form>     
+                        <button id="btnLogin" type="submit">Login</button><br><br>
+                        
+                    </form>  
+                    <form action="register.php" method="post">
+                        <button id="btnRegister" type="submit">Crea un account</button><br><br>
+                    </form>    
+                </div>
+                
+                        <h2>Oppure</h2>
+                <form action="home.php" method="post" id="login">
+                    <button id="btnLogin" type="submit">Continua come guest</button><br><br>
+                </form> 
+                <br>
             <div>
             <footer>
                 <hr>

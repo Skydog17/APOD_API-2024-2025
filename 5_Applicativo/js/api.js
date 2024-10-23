@@ -1,11 +1,12 @@
 /////////////////////////// MAIN FUNCTION ///////////////////////////
 function richiesta(d){ //d sarà una stringa
-    cleanImage(); //Senza questo se l'immagine a destra o sinistra non esistevano, url rimanevo quello vecchio
+    //nascondiTutto(); //Nasconde tutti i tag, così quelli non sovrascritti non si vedono
     var req1 = new XMLHttpRequest(); //Request per la foto centrale
     var req2 = new XMLHttpRequest(); //Request per la foto centrale
     var req3 = new XMLHttpRequest(); //Request per la foto centrale
     var url = "https://api.nasa.gov/planetary/apod?api_key=";
     var api_key = "CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l";
+    //https://api.nasa.gov/planetary/apod?api_key=CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l&date=2024-10-23
 
     if(d==''){
         d = new Date();
@@ -42,11 +43,22 @@ function richiesta(d){ //d sarà una stringa
     req1.addEventListener("load", function(){
         if(req1.status == 200 && req1.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response1 = JSON.parse(req1.responseText); //JSON con la risposta
-            document.getElementById("immagine").src = response1.url; //modifica il src dell'immagine in SD
             document.getElementById("titolo_img").textContent = response1.title; //modifica il titolo
             document.getElementById("data_immagine").textContent = response1.date;
             document.getElementById("descrizione_immagine").textContent = response1.explanation;
-            //createImgVid(req1, 0)
+            document.getElementById("iframe0").style.visibility = "visible";
+            document.getElementById("iframe0").style.width = "420px";
+            document.getElementById("iframe0").style.height = "315px";
+            if(response1.media_type == "video"){
+                document.getElementById("iframe0").style.visibility = "visible";
+                document.getElementById("iframe0").style.width = "420px";
+                document.getElementById("iframe0").style.height = "315px";
+                document.getElementById("iframe0").src = '"'+response1.url+'"'; //modifica il src del video
+            }
+            else{
+                document.getElementById("immagine").style.visibility = "visible";
+                document.getElementById("immagine").src = response1.url; //modifica il src dell'immagine in SD
+            }
         }
     })
 
@@ -56,7 +68,15 @@ function richiesta(d){ //d sarà una stringa
     req2.addEventListener("load", function(){
         if(req2.status == 200 && req2.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response2 = JSON.parse(req2.responseText); //JSON con la risposta
-            document.getElementById("immagine-1").src = response2.url; //modifica il src dell'immagine
+            
+            if(response2.media_type == "image"){
+                document.getElementById("immagine-1").style.visibility = "visible";
+                document.getElementById("immagine-1").url = response2.url; //modifica il src dell'immagine
+            }
+            else{
+                document.getElementById("iframe-1").style.visibility="visible";
+                document.getElementById("iframe-1").url = response2.url; //modifica il url del video
+            }
         }
     })
 
@@ -66,11 +86,18 @@ function richiesta(d){ //d sarà una stringa
     req3.addEventListener("load", function(){
         if(req3.status == 200 && req3.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response3 = JSON.parse(req3.responseText); //JSON con la risposta
-            document.getElementById("immagine1").src = response3.url; //modifica il src dell'immagine //modifica il src dell'immagine
+            
+            if(response1.media_type == "image"){
+                document.getElementById("immagine1").style.visibility = "visible";
+                document.getElementById("immagine1").src = response3.url; //modifica il src dell'immagine //modifica il src dell'immagine
+            }
+            else{
+                document.getElementById("iframe1").style.visibility="visible";
+                document.getElementById("iframe1").url = response3.url; //modifica il url del video
+            }
         }
     })
 }
-
 
 /////////////////////////// Calcola la data e la mette nel formato corretto ///////////////////////////
 function calcoloDate(d, selettore){ //d sarà un object Date
@@ -97,14 +124,6 @@ function calcoloDate(d, selettore){ //d sarà un object Date
     }
 }
 
-/////////////////////////// Svuota le immagini ///////////////////////////
-function cleanImage(){
-    document.getElementById("immagine").src = "";
-    document.getElementById("immagine-1").src = "";
-    document.getElementById("immagine1").src = "";
-}
-
-
 function aprImmagine(num){
     var data = document.getElementById("data_immagine").innerHTML.valueOf();
     var d0 = new Date(data);
@@ -125,36 +144,12 @@ function aprImmagine(num){
     }
 }
 
-
-/////////////////////////// Crea il tag img o video ///////////////////////////
-function createImgVid(r, num){
-    var immagini ="";
-    if(num == 0){
-        if(r.media_type=="image"){
-            immagini += "<img id='immagine'></img>";
-        }
-        else{
-            immagini += "<video id ='immagine' width='auto' height='auto' controls> <source type='video/mp4'></video>";
-        }
-    }
-
-    else if(num ==-1){
-        if(r.media_type=="image"){
-            immagini+="<img class='smallerImg' id='immagine-1' onclick='aprImmagine(-1)'>";
-        }
-        else{
-            immagini+="<video id ='immagine-1' width='auto' height='auto' controls onclick='aprImmagine(-1)'> <source type='video/mp4'></video>";
-        }
-    }
-
-    else if(num==1){
-        if(r.media_type=="image"){
-            immagini+="<img class='smallerImg' id='immagine1' onclick='aprImmagine(1)'></img>";
-        }
-        else{
-            var source = r.url;
-            immagini+="<video id ='immagine1' width='auto' height='auto' controls onclick='aprImmagine(-1)'> <source src='"+source + "' type='video/mp4'></video>";
-        }
-    }
-    console.log(immagini)
+/////////////////////////// Nascondi i tag img o video ///////////////////////////
+function nascondiTutto(){
+    document.getElementById("iframe").style.visibility="hidden";
+    document.getElementById("iframe1").style.visibility="hidden";
+    document.getElementById("iframe-1").style.visibility="hidden";
+    document.getElementById("immagine").style.visibility="hidden";
+    document.getElementById("immagine1").style.visibility="hidden";
+    document.getElementById("immagine-1").style.visibility="hidden";
 }

@@ -9,12 +9,9 @@ CREATE TABLE Utente(
 );
 
 CREATE TABLE Preferito(
-    Id  INT AUTO_INCREMENT,
+    Data Date NOT NULL,
     Utente_Id  INT NOT NULL,
-    Giorno  INT NOT NULL,
-    Mese  INT NOT NULL,
-    Anno  INT NOT NULL,
-    PRIMARY KEY(Id,Utente_Id ),
+    PRIMARY KEY(Data,Utente_Id ),
     FOREIGN KEY (Utente_Id)
     REFERENCES  Utente(Id)
     ON DELETE CASCADE
@@ -22,14 +19,11 @@ CREATE TABLE Preferito(
 );
 
 CREATE TABLE Cronologia(
-    Id  INT AUTO_INCREMENT,
+    Data Date NOT NULL,
     Utente_Id  INT NOT NULL,
-    Giorno  INT NOT NULL,
-    Mese  INT NOT NULL,
-    Anno  INT NOT NULL,
-    PRIMARY KEY( Id ,  Utente_Id ),
-    FOREIGN KEY ( Utente_Id )
-    REFERENCES  Utente ( Id )
+    PRIMARY KEY(Data,Utente_Id ),
+    FOREIGN KEY (Utente_Id)
+    REFERENCES  Utente(Id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
