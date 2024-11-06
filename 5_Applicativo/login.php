@@ -25,7 +25,10 @@ else if(empty($pass)){
     header("Location: index.php?error=Password è richiesta");
     exit();
 }
-$pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+//$pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+//$pass = password_hash(md5($_POST['password']));
+$pass = md5($_POST['password']);
+
 $sql = "SELECT * FROM utente WHERE Username='$username' AND  Password='$pass'"; //QUERY DA FARE AL DATABASE
 $result = mysqli_query($conn, $sql);
 

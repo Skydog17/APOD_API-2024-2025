@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,6 +17,7 @@
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
+                    <!--<a href="index.php"><button>Login</button></a><br><br>-->
 <?php
     session_start();
     if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
@@ -30,7 +30,6 @@
                 <h2 class="title">Ciao <?php echo $_SESSION['Username']; ?>,<br>scopri il cosmo!</h2>
                 <hr>
             </header>
-
 <?php
 }
 else{
@@ -45,21 +44,72 @@ else{
 <?php
 }
 ?>
+            <!--<div id="immagini">
+                <h1 id="titolo_img"></h1>
+                <h3 id="data_immagine"></h3>
+                <img class="smallerImg" id="immagine-1" onclick="aprImmagine('-1')">
+                <img id="immagine">
+                <img class="smallerImg" id="immagine1" onclick="aprImmagine('1')">
+            </div>-->
+
             <div id="immagini">
                 <h1 id="titolo_img"></h1>
                 <h3 id="data_immagine"></h3>
 
-                <img class="smallerImg" id="immagine-1" onclick="aprImmagine('-1')">
+                <div class="columnL">
 
-                <img id="immagine">
+                    <img 
+                    class="smallerImg" 
+                    id="immagine-1" 
+                    onclick="aprImmagine('-1')"
+                    >
 
-                <img class="smallerImg" id="immagine1" onclick="aprImmagine('1')">
+                    <iframe 
+                    id="iframe-1"
+                    class="smallerImg" 
+                    onclick="aprImmagine('-1')"
+                    width="0" 
+                    height="0"
+                    ></iframe>
+
+                </div>
+
+                <div class="columnC">
+
+                    <img id="immagine">
+
+                    <iframe 
+                    id="iframe"
+                    width="0" 
+                    height="0"
+                    ></iframe>
+
+                </div>
+
+                <div class="columnR">
+                    <img 
+                    class="smallerImg" 
+                    id="immagine1" 
+                    onclick="aprImmagine('1')"
+                    >
+
+                    <iframe 
+                    id="iframe1"
+                    class="smallerImg" 
+                    onclick="aprImmagine('1')"
+                    width="0" 
+                    height="0"
+                    ></iframe>
+
+                </div>
+
+                <div id="desc">
+                    <div id="descrizione">
+                        <p id="descrizione_immagine"></p>
+                    </div>
+                </div>
             </div>
-                
-            <div id="desc">
-                <p id="descrizione_immagine"></p>
-            </div>
-    
+
             <footer>
                 <hr>
                 <h2><a onclick="aprImmagine(-1)">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <a onclick="richiesta('')">Pic of Today</a> | <button onclick="apriFiltro()">Search</button> | <a onclick="aprImmagine(1)">&#8594;</a></h2>

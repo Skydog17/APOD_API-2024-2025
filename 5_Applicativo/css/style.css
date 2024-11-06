@@ -22,7 +22,7 @@ footer{
 }
 
 iframe{
-    visibility:visible;
+    border: none;
 }
 
 a{
@@ -32,6 +32,7 @@ a{
 img{
     height: auto;
     width: auto;
+    border: solid 1px white;
     margin:0%;
     max-width: 600px;
     max-height: 400px;
@@ -51,8 +52,8 @@ button{
 
 .smallerImg{
     transform: scale(0.8);
-    max-width: 400px;
-    max-height: 300px;
+    /*max-width: 400px;
+    max-height: 300px;*/
     opacity: 0.4;
 }
 
@@ -61,12 +62,44 @@ button{
     color: #ADD8E6;
 }
 
+.columnL {
+    float: left;
+    text-align: right;
+    width: 30%;
+    vertical-align: middle;}
+
+.columnC {
+    float: left;
+    width: 40%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.columnR {
+    float: left;
+    text-align: left;
+    width: 30%;
+    vertical-align: middle;
+    min-height: 450px;
+}
+  
 /** CSS RELATIVO AGLI ID**/
 
 #desc{
-    text-align: center;
-    padding: 10px 75px 25px 75px; /** Top Right Bottom Left**/
+    text-align:left;
+    width: 100%;
+    float: left;
+    min-height: 200px;
 }
+
+#descrizione{
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    background-color: #000035;
+    margin-bottom: 50px;   
+}
+
 
 #filtro{
     visibility: hidden;
@@ -82,6 +115,7 @@ button{
     vertical-align: center;
     margin-top: 25px;
     margin-bottom: 25px;
+    width: 100%;
 }
 #apriMenu{
     height: 20px;
@@ -120,7 +154,7 @@ button{
     width: 120px;
 }
 
-/**HOVER**/
+/**CASI PATICOLARI**/
 
 .smallerImg:hover{
     opacity: 1.0;
@@ -135,3 +169,24 @@ button.disabled :hover{
     background-color: #10104F;
     transform: scale(1);
 }
+
+#immagini:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* MEDIA 
+
+  @media screen and (max-width: 600px) {
+    .columnR, .columnL {
+      width: 0%;
+    }
+    .columnC {
+        width: 100%;
+      }
+    #immagine-1, #immagine1{
+        visibility: hidden;
+    }
+  }
+    */

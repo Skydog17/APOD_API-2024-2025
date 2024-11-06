@@ -4,3 +4,19 @@ INSERT INTO utente (Username, Password) VALUES("Seba",PASSWORD("Letsgo11"));
 INSERT INTO utente (Username, Password) VALUES("Bubu", PASSWORD("Radicchio13"));
 INSERT INTO utente (Username, Password) VALUES("Alex", PASSWORD("Kekko17"));
 INSERT INTO utente (Username, Password) VALUES("a", PASSWORD("a"));
+MD5( plain_string )
+
+INSERT INTO utente (Username, Password) VALUES("skydog", MD5("abc"));
+
+SET FOREIGN_KEY_CHECKS = 0; 
+SET AUTOCOMMIT = 0; 
+START TRANSACTION; 
+
+
+TRUNCATE utente;
+
+SET FOREIGN_KEY_CHECKS = 1; 
+COMMIT;  -- make a commit
+SET AUTOCOMMIT = 1 ;
+
+D'ora in poi tutti i valori sono stati inseriti diretamente dalla pagina di register

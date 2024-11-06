@@ -7,7 +7,6 @@ $dbName = "APOD";
 
 $conn = mysqli_connect($sname, $user, $password, $dbName);
 if(!$conn){
-    echo "Connessione fallita";
-    exit();
+    exit("Errore el connettersi al database");
 }
 ?>

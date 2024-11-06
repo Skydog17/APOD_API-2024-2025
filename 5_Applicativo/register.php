@@ -43,10 +43,7 @@ include "db_conn.php";
                         <button id="btnRegister" type="submit">Login</button><br><br>
                     </form>  
                 </div>
-                        <h2>Oppure</h2>
-                <form action="home.php" method="post" id="login">
-                    <button id="btnLogin" type="submit">Continua come guest</button><br><br>
-                </form> 
+
                 <br>
             <div>
             <footer>
@@ -97,7 +94,10 @@ include "db_conn.php";
                 }
                 else{
                     if($stmt = $conn->prepare('INSERT INTO utente (Username, Password) VALUE(?, ?)')){
-                        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        //$password = password_hash(md5($_POST['password']));
+                        $password = md5($_POST['password']);
+
                         $stmt->bind_param('ss', $_POST['uname'], $password);
                         $stmt->execute();
                         header("Location: index.php?=Registrato con succcesso, eseguire il login");
