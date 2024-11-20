@@ -11,6 +11,7 @@ CREATE TABLE Utente(
 CREATE TABLE Preferito(
     Data Date NOT NULL,
     Utente_Id  INT NOT NULL,
+    url VARCHAR(255),
     PRIMARY KEY(Data,Utente_Id ),
     FOREIGN KEY (Utente_Id)
     REFERENCES  Utente(Id)
@@ -18,12 +19,15 @@ CREATE TABLE Preferito(
     ON UPDATE CASCADE
 );
 
-CREATE TABLE Cronologia(
-    Data Date NOT NULL,
+CREATE TABLE Cronologia( 
+    Id INT AUTO_INCREMENT,
     Utente_Id  INT NOT NULL,
-    PRIMARY KEY(Data,Utente_Id ),
+    Data Date NOT NULL,
+    url VARCHAR(255),
+    PRIMARY KEY(Id,Utente_Id ),
     FOREIGN KEY (Utente_Id)
     REFERENCES  Utente(Id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+

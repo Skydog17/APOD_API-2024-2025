@@ -44,13 +44,6 @@ else{
 <?php
 }
 ?>
-            <!--<div id="immagini">
-                <h1 id="titolo_img"></h1>
-                <h3 id="data_immagine"></h3>
-                <img class="smallerImg" id="immagine-1" onclick="aprImmagine('-1')">
-                <img id="immagine">
-                <img class="smallerImg" id="immagine1" onclick="aprImmagine('1')">
-            </div>-->
 
             <div id="immagini">
                 <h1 id="titolo_img"></h1>
@@ -61,13 +54,13 @@ else{
                     <img 
                     class="smallerImg" 
                     id="immagine-1" 
-                    onclick="aprImmagine('-1')"
+                    onclick="aprImmagine(-1)"
                     >
 
                     <iframe 
                     id="iframe-1"
                     class="smallerImg" 
-                    onclick="aprImmagine('-1')"
+                    onclick="aprImmagine(-1)"
                     width="0" 
                     height="0"
                     ></iframe>
@@ -90,13 +83,13 @@ else{
                     <img 
                     class="smallerImg" 
                     id="immagine1" 
-                    onclick="aprImmagine('1')"
+                    onclick="aprImmagine(1)"
                     >
 
                     <iframe 
                     id="iframe1"
                     class="smallerImg" 
-                    onclick="aprImmagine('1')"
+                    onclick="aprImmagine(1)"
                     width="0" 
                     height="0"
                     ></iframe>
@@ -107,17 +100,18 @@ else{
                     <div id="descrizione">
                         <p id="descrizione_immagine"></p>
                     </div>
+                    <div id="filtro">
+                        <p>Inserisci la data da cercare, deve essere in questo range di date:<br>16.06.1995 - Oggi<br>ATTENZIONE, nel 1995 non tutti i giorni avevano una foto</p>
+                        <label>Data <label><input type='date' id='dataFiltro'><button onclick="avviaRicerca()">Cerca</button>
+                        <br><br>
+                    </div>
                 </div>
+                
             </div>
 
             <footer>
                 <hr>
-                <h2><a onclick="aprImmagine(-1)">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <a onclick="richiesta('')">Pic of Today</a> | <button onclick="apriFiltro()">Search</button> | <a onclick="aprImmagine(1)">&#8594;</a></h2>
-                <div id="filtro">
-                    <p>Inserire la data con il seguente formato:<br> yyyy-mm-dd</p>
-                    <label>Data <label><input type='text' id='dataFiltro'><button onclick="avviaRicerca()">Cerca</button>
-                    <br><br>
-                </div>
+                <h2><a onclick="aprImmagine(-1)">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <a onclick="richiesta('')">Premimi e guarda la foto di oggi!</a> | <button onclick="apriFiltro()">Search</button> | <a onclick="aprImmagine(1)">&#8594;</a></h2>
             </footer>
         </div>
     </body>

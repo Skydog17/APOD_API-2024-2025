@@ -22,6 +22,7 @@
 
             <div id="container">
                 <div id ="login">
+
                     <form action="login.php" method="post">
                         <label>Username</label>
                         <input type="text" placeholder="Enter Username" name="uname">
@@ -36,8 +37,8 @@
                         <?php } ?> 
 
                         <button id="btnLogin" type="submit">Login</button><br><br>
-                        
                     </form>  
+
                     <form action="register.php" method="post">
                         <button id="btnRegister" type="submit">Crea un account</button><br><br>
                     </form>    

@@ -61,11 +61,14 @@ include "db_conn.php";
                     $data = htmlspecialchars($data); //Rimuove caratteri speciali
                     return $data;
                 }
+
+                
             }
-            
+
             $username = convalida($_POST['uname']);
             $pass = convalida($_POST['password']);
             $rPass = convalida($_POST['repeatP']);
+            
             
             //CONTROLLO CHE USERNAME E PASSWORD NON SIANO VUOTI; IN CASO DISPLAY UN ERRORE
             if(empty($username)){
@@ -100,7 +103,11 @@ include "db_conn.php";
 
                         $stmt->bind_param('ss', $_POST['uname'], $password);
                         $stmt->execute();
-                        header("Location: index.php?=Registrato con succcesso, eseguire il login");
+                        header("Location: index.php?=Registrato con successo, eseguire il login");
+                        /**$_SESSION['Username'] = $row['Username'];
+                        $_SESSION['Password'] = $row['Password'];
+                        $_SESSION['Id'] = $row['Id'];
+                        header("Location: home.php");*/
                         exit();
                     }
                 }

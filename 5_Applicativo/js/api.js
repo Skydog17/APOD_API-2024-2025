@@ -46,11 +46,18 @@ function richiesta(d){ //d sarà una stringa
         if(req1.status == 200 && req1.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response1 = JSON.parse(req1.responseText); //JSON con la risposta
             document.getElementById("titolo_img").innerHTML = response1.title; //modifica il titolo
-            document.getElementById("data_immagine").innerHTML = response1.date;
+            //document.getElementById("data_immagine").innerHTML = response1.date;
+            formatDataEU(response1.date);
             document.getElementById("descrizione_immagine").innerHTML = formattaStringa(response1.explanation);
             /**document.getElementById("immagine").style.visibility = "visible";
             document.getElementById("immagine").src = src(response1); //modifica il src dell'immagine in SD*/
             scegliMedia("immagine", "iframe", response1);
+        }
+        else if(req1.status == 404){
+            window.alert("Immagine inesistente per questa data")
+            document.getElementById("titolo_img").innerHTML = "Immagine inesistente";
+            document.getElementById("descrizione_immagine").innerHTML = "Per favore cercare la foto di un altra data, grazie!";
+            defaultSRC("immagine", "iframe");
         }
         else{
             defaultSRC("immagine", "iframe");
@@ -89,6 +96,85 @@ function richiesta(d){ //d sarà una stringa
     })
 }
 
+/**function richiesta3(d){
+    defaultSize("immagine", "iframe");
+    defaultSize("immagine-1", "iframe-1");
+    defaultSize("immagine1", "iframe1");
+    var req = new XMLHttpRequest(); //Request per la foto centrale
+    var url = "https://api.nasa.gov/planetary/apod?api_key=";
+    var api_key = "CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l";
+    //ESEMPIO QUERY = https://api.nasa.gov/planetary/apod?api_key=CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l&date=2024-10-23
+
+    if(d==''){
+        d = new Date();
+    }
+    else{
+        d = new Date(d);
+    }
+    var startDate = calcoloDate(d,1);
+    var endDate = calcoloDate(d,2);
+    var oggi = new Date();
+    var primaFoto = "1995-06-16";
+    var dataPrimaFoto = new Date(primaFoto);
+
+    if(d.getTime() < dataPrimaFoto.getTime() || d.getTime() > oggi.getTime()){
+        window.alert("Data non valida");
+        d = new Date();
+        dataCentrale = calcoloDate(d,0);
+    }
+
+    var query = "&start_date=" +startDate+"&end_date=" + endDate;
+    
+    d = d.toISOString(); //Formatto d perchè dovrò fare un controllo futuro
+    d = d.slice(0,10); //prendo solo le info a me necessarie, "yyyy-mm-dd"
+    oggi = oggi.toISOString(); 
+    oggi = oggi.slice(0,10); 
+
+//Richiesta per la foto centrale
+    req.open("GET", url + api_key + query);
+    req.send();
+    req.addEventListener("load", function(){
+        for(var i = 0; i<req.length(); i++){
+            if(req.status == 200 && req.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
+                var response = JSON.parse(req.responseText); //JSON con la risposta
+                if(i==1){
+                    document.getElementById("titolo_img").innerHTML = response[i].title; //modifica il titolo
+                    //document.getElementById("data_immagine").innerHTML = response1.date;
+                    formatDataEU(response1.date);
+                    document.getElementById("descrizione_immagine").innerHTML = formattaStringa(response1.explanation);
+                    /**document.getElementById("immagine").style.visibility = "visible";
+                    document.getElementById("immagine").src = src(response1); //modifica il src dell'immagine in SD
+                    scegliMedia("immagine", "iframe", response1);
+                }
+                
+            }
+            else if(req.status == 404){
+                window.alert("Immagine inesistente per questa data")
+                document.getElementById("titolo_img").innerHTML = "Immagine inesistente";
+                document.getElementById("descrizione_immagine").innerHTML = "Per favore cercare la foto di un altra data, grazie!";
+                defaultSRC("immagine", "iframe");
+            }
+            else{
+                defaultSRC("immagine", "iframe");
+            }
+        }
+    })
+
+    //Richiesta per la foto sinistra
+    req2.open("GET", url + api_key + dataIeri); 
+    req2.send();
+    req2.addEventListener("load", function(){
+        if(req2.status == 200 && req2.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
+            var response2 = JSON.parse(req2.responseText); //JSON con la risposta
+            /**document.getElementById("immagine-1").style.visibility = "visible";
+            document.getElementById("immagine-1").src = src(response2); //modifica il src dell'immagine
+            scegliMedia("immagine-1", "iframe-1", response2);
+        }
+        else{
+            defaultSRC("immagine-1", "iframe-1");
+        }
+    })
+}*/
 
 /////////////////////////// Calcola la data e la mette nel formato corretto ///////////////////////////
 function calcoloDate(d, selettore){ //d sarà un object Date
@@ -117,7 +203,8 @@ function calcoloDate(d, selettore){ //d sarà un object Date
 
 /////////////////////////// Apre l'immagine del giorno prima/seguente ///////////////////////////
 function aprImmagine(num){
-    var data = document.getElementById("data_immagine").innerHTML.valueOf();
+
+    var data = formatDataUSA();
     var d0 = new Date(data);
     var tempoD0 = d0.getTime();
     if(num==-1){
