@@ -66,7 +66,8 @@ button{
     float: left;
     text-align: right;
     width: 30%;
-    vertical-align: middle;}
+    vertical-align: middle;
+}
 
 .columnC {
     float: left;
@@ -84,6 +85,11 @@ button{
 }
   
 /** CSS RELATIVO AGLI ID**/
+
+#url{
+    visibility: visible;
+    /**size: 0px;**/
+}
 
 #desc{
     text-align:left;
@@ -121,6 +127,7 @@ button{
     margin-bottom: 25px;
     width: 100%;
 }
+
 #apriMenu{
     height: 20px;
 }
@@ -178,7 +185,7 @@ button.disabled :hover{
     content: "";
     display: table;
     clear: both;
-  }
+}
 
   /* MEDIA 
 

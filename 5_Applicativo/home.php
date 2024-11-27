@@ -70,12 +70,18 @@ else{
                 <div class="columnC">
 
                     <img id="immagine">
+                    <form action="preferiti.php" method="post">
+                        <input type="text" id="url" name="url" value=" ">
+                        <input type="text" id="dataInput" name="dataInput" value=" ">
+                        <button id="button_preferito" type="submit">Metti nei preferiti</button><br><br>
+                    </form>    
 
                     <iframe 
                     id="iframe"
                     width="0" 
                     height="0"
                     ></iframe>
+
 
                 </div>
 

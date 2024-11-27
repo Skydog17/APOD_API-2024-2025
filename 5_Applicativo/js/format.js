@@ -1,9 +1,6 @@
 
-
-
 var menuAperto= false;
 var searchAperto= false;
-
 
 ////////////////////////// APRE IL FILTRO ///////////////////////////
 function apriFiltro(){
@@ -19,7 +16,6 @@ function apriFiltro(){
     searchAperto=!searchAperto;
 }
 
-
 ////////////////////////// AVVIA LA RICERCA CON LA DATA INSERITA NEL FILTRO ///////////////////////////
 function avviaRicerca(){
     var input = document.getElementById("dataFiltro").value;
@@ -28,7 +24,6 @@ function avviaRicerca(){
     document.getElementById("filtro").style.visibility = "hidden";
     //cleanImage();   //Function dentro api.js
 }
-
 
 ////////////////////////// APRE IL MENU ///////////////////////////
 function openMenu(){
@@ -40,7 +35,6 @@ function openMenu(){
     }
     menuAperto=!menuAperto;
 }
-
 
 /////////////////////////// FORMATTA LA DATA COL FORMAT EUROPEO dd.mm.yyyy///////////////////////////
 function formatDataEU(data){ 
@@ -66,4 +60,12 @@ dF = dF.toISOString();
 dF = dF.slice(0,10);
 
 return dF;
+}
+
+////////////////////////// inserisce i dati dentro gli input così da poter mettere i dati  nel DB con php ///////////////////////////
+function change(){
+    var data = formatDataUSA();
+    var url = document.getElementById("immagine").src;
+    document.getElementById("url").value = url;
+    document.getElementById("dataInput").value = data;
 }

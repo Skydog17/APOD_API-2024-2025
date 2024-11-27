@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "db_conn.php";
 ?>
 <html>
@@ -101,13 +102,18 @@ include "db_conn.php";
                         //$password = password_hash(md5($_POST['password']));
                         $password = md5($_POST['password']);
 
-                        $stmt->bind_param('ss', $_POST['uname'], $password);
+                        $stmt->bind_param('ss', $username, $password);
                         $stmt->execute();
-                        header("Location: index.php?=Registrato con successo, eseguire il login");
-                        /**$_SESSION['Username'] = $row['Username'];
+
+                        $sql = "SELECT * FROM utente WHERE Username='$username' AND  Password='$password'"; //QUERY DA FARE AL DATABASE
+                        $result = mysqli_query($conn, $sql);
+
+                        $row = mysqli_fetch_assoc($result);
+                        echo "Register effetuato con successo!";
+                        $_SESSION['Username'] = $row['Username'];
                         $_SESSION['Password'] = $row['Password'];
                         $_SESSION['Id'] = $row['Id'];
-                        header("Location: home.php");*/
+                        header("Location: home.php");
                         exit();
                     }
                 }
