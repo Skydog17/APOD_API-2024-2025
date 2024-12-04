@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
     if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
 ?>
                     <a href="logout.php"><button>Logout</button></a><br><br>
-                    <button>Preferiti</button><br><br>
+                    <a href="favorite.php"><button>Preferiti</button></a><br><br>
                     <button>Cronologia</button>
                 </div>
                 <h1 class="title">Astronomy Picture of the day</h1>
@@ -69,19 +70,29 @@ else{
 
                 <div class="columnC">
 
-                    <img id="immagine">
-                    <form action="preferiti.php" method="post">
-                        <input type="text" id="url" name="url" value=" ">
-                        <input type="text" id="dataInput" name="dataInput" value=" ">
-                        <button id="button_preferito" type="submit">Metti nei preferiti</button><br><br>
-                    </form>    
+                    <img id="immagine">                 
 
-                    <iframe 
+                    <iframe id="iframe" 
                     id="iframe"
                     width="0" 
                     height="0"
                     ></iframe>
 
+                    <?php
+                        if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
+                    ?>
+                        <form action="addPreferiti.php" method="get">
+                            <div id="inputDaNascondere">
+                                <input type="text" id="url" name="url" value=" " style="visibility:hidden;">
+                                <input type="text" id="dataInput" name="dataInput" value=" " style="visibility:hidden;">
+                                <input type="text" id="titoloInput" name="titoloInput" value=" " style="visibility:hidden;">
+                                <input type="text" id="descInput" name="descInput" value=" " style="visibility:hidden;">
+                            </div>
+                            <button id="button_preferito" type="submit">Metti nei preferiti</button><br><br>
+                        </form> 
+                    <?php
+                        }
+                    ?>
 
                 </div>
 
@@ -95,7 +106,6 @@ else{
                     <iframe 
                     id="iframe1"
                     class="smallerImg" 
-                    onclick="aprImmagine(1)"
                     width="0" 
                     height="0"
                     ></iframe>

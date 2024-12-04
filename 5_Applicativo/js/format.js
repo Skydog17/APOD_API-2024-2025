@@ -64,8 +64,20 @@ return dF;
 
 ////////////////////////// inserisce i dati dentro gli input così da poter mettere i dati  nel DB con php ///////////////////////////
 function change(){
+    document.getElementById("url").value = " ";
+    document.getElementById("dataInput").value = " ";
+    document.getElementById("titoloInput").value = " ";
+    document.getElementById("descInput").value = " ";
+    //Gli input si svuotano così in caso di assenza di url non salvo quello sbagliato
     var data = formatDataUSA();
     var url = document.getElementById("immagine").src;
+    if(url==""){
+        url = document.getElementById("iframe").src;
+    }
+    var titolo = document.getElementById("titolo_img").innerHTML;
+    var desc = document.getElementById("descrizione_immagine").innerHTML;
     document.getElementById("url").value = url;
     document.getElementById("dataInput").value = data;
+    document.getElementById("titoloInput").value = titolo;
+    document.getElementById("descInput").value = desc;
 }

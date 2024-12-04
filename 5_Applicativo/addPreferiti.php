@@ -2,9 +2,11 @@
 session_start();
 include "db_conn.php";
 
-$data = $_POST['dataInput'];
-$url = $_POST['url'];
+$data = $_GET['dataInput'];
+$url = $_GET['url'];
 $id = $_SESSION['Id'];
+$titolo = $_GET['titoloInput'];
+$desc = $_GET['descInput'];
 
 if($stmt = $conn->prepare('SELECT Utente_Id, Data FROM preferito WHERE Utente_Id = ? AND Data = ?')){
     $stmt->bind_param('ss', $_SESSION['Id'], $data);
@@ -17,12 +19,12 @@ if($stmt = $conn->prepare('SELECT Utente_Id, Data FROM preferito WHERE Utente_Id
         exit();
     }
     else{
-        if($stmt = $conn->prepare('INSERT INTO preferito VALUE(?, ?, ?)')){
+        if($stmt = $conn->prepare('INSERT INTO preferito VALUE(?, ?, ?, ?, ?)')){
 
-            $stmt->bind_param('sss', $data, $_SESSION['Id'], $url);
+            $stmt->bind_param('sssss', $data, $_SESSION['Id'], $url, $titolo, $desc);
             $stmt->execute();
 
-            header("Location: home.php?Foto aggiunta on successo!");
+            //header("Location: home.php");
             exit();
         }
     }
@@ -32,6 +34,7 @@ if($stmt = $conn->prepare('SELECT Utente_Id, Data FROM preferito WHERE Utente_Id
     header("Location: home.php?=error= ERRORE");
     exit();
 }
+
 ?>
 
 

@@ -1,5 +1,6 @@
 /////////////////////////// MAIN FUNCTION ///////////////////////////
 function richiesta(d){ //d sarà una stringa
+    document.getElementsByClassName("error").innerHTML="";
     defaultSize("immagine", "iframe");
     defaultSize("immagine-1", "iframe-1");
     defaultSize("immagine1", "iframe1");
