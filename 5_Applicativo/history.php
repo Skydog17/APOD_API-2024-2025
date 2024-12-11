@@ -23,17 +23,17 @@
                 <div id="menu">
                     <a href="logout.php"><button>Logout</button></a><br><br>
                     <a href="home.php"><button>Home</button></a><br><br>
-                    <a href="history.php"><button>Cronologia</button></a><br><br>
+                    <a href="favorite.php"><button>Preferiti</button></a><br><br>
                     <a href="filtro.php"><button>Filtro</button></a><br>
                 </div>
                 <h1 class="title">Astronomy Picture of the day</h1>
-                <h2 class="title">Ciao <?php echo $_SESSION['Username']; ?>,<br>ecco le tue foto preferite!</h2>
+                <h2 class="title">Ciao <?php echo $_SESSION['Username']; ?>,<br>ecco la tua cronologia!</h2>
             </header>
 
             <?php
                 include "db_conn.php";
                 $id = $_SESSION['Id'];
-                $sql = "SELECT * FROM preferito WHERE Utente_Id = '$id'"; //QUERY DA FARE AL DATABASE
+                $sql = "SELECT * FROM cronologia WHERE Id_Utente = '$id'"; //QUERY DA FARE AL DATABASE
                 $result = mysqli_query($conn, $sql);
                 $media="";
                 $css = "style='border: 1px solid white;border-collapse: collapse;padding:10px;'";
@@ -66,9 +66,9 @@
                                             <th ".$css.">".$titolo."</th>
                                             <th ".$cssWider.">".$desc."... <br><a href='home.php'>See more</a></th>
                                             <th ".$css."> 
-                                                <form action='removePreferiti.php' method='post'>
+                                                <form action='removeCronologia.php' method='post'>
                                                     <input type='text' id='dataInput' name='dataInput' value=".$date." style='visibility:hidden;'><br>
-                                                    <button id='button_remover' type='submit'>Rimuovi dai preferiti</button><br><br>
+                                                    <button id='button_remover' type='submit'>Rimuovi dalla cronologia</button><br><br>
                                                 </form>
                                             </th>
                                         </tr>";
@@ -77,9 +77,10 @@
                     echo $table;
                 } 
                 else{
-                    echo "<hr><br><br><center><h1>Nessuna foto preferita!</h1><center><br><br><hr>";
+                    echo "<hr><br><br><center><h1>Nessuna foto Visualizzata!</h1><center><br><br><hr>";
                 }
             ?>
+
             <footer>
                 <h2>Astronomy Picture of the day - Kamil Siddiqui - I3AC</h2>
             </footer>

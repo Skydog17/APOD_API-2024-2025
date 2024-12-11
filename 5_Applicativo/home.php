@@ -18,14 +18,14 @@
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
-                    <!--<a href="index.php"><button>Login</button></a><br><br>-->
 <?php
     session_start();
     if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
 ?>
                     <a href="logout.php"><button>Logout</button></a><br><br>
                     <a href="favorite.php"><button>Preferiti</button></a><br><br>
-                    <button>Cronologia</button>
+                    <a href="history.php"><button>Cronologia</button></a><br><br>
+                    <a href="filtro.php"><button>Filtro</button></a><br>
                 </div>
                 <h1 class="title">Astronomy Picture of the day</h1>
                 <h2 class="title">Ciao <?php echo $_SESSION['Username']; ?>,<br>scopri il cosmo!</h2>
@@ -35,8 +35,9 @@
 }
 else{
 ?>
-                    <a href="index.php"><button>Login</button></a><br>
-                    <h4>Per vedere Preferiti e Cronologia,<br> effettua il login!<h4>
+                    <a href="index.php"><button>Login</button></a><br><br>
+                    <a href="filtro.php"><button>Filtro</button></a><br>
+                    <h4>Per vedere Preferiti e<br> Cronologia, effettua il login!<h4>
                 </div>
                 <h1 class="title">Astronomy Picture of the day</h1>
                 <h2 class="title">Effettua il login e scopri il cosmo!</h2>
@@ -127,7 +128,7 @@ else{
 
             <footer>
                 <hr>
-                <h2><a onclick="aprImmagine(-1)">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <a onclick="richiesta('')">Premimi e guarda la foto di oggi!</a> | <button onclick="apriFiltro()">Search</button> | <a onclick="aprImmagine(1)">&#8594;</a></h2>
+                <h2><a onclick="aprImmagine(-1)">&#8592;</a> | Astronomy Picture of the day - Kamil Siddiqui - I3AC | <a onclick="richiesta('')">Premimi e guarda la foto di oggi!</a> | <a onclick="aprImmagine(1)">&#8594;</a></h2>
             </footer>
         </div>
     </body>

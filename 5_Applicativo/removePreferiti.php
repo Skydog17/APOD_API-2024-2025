@@ -24,7 +24,7 @@ $id = $_SESSION['Id'];
         $stmt->close();
     
     }else{
-        header("Location: home.php?=error= ERRORE");
+        header("Location: favorite.php?=error= ERRORE");
         exit();
     }
 

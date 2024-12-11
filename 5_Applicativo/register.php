@@ -1,7 +1,4 @@
-<?php
-session_start();
-include "db_conn.php";
-?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -41,9 +38,15 @@ include "db_conn.php";
                             <p class="error"> <?php echo $_GET['error'];?></p>
                         <?php } ?> 
 
-                        <button id="btnRegister" type="submit">Login</button><br><br>
+                        <button id="btnRegister" type="submit">Registrati</button><br><br>
                     </form>  
                 </div>
+                
+                <h2>Oppure</h2>
+
+                <form action="index.php" method="post" id="login">
+                    <button id="btnLogin" type="submit">Torna al login</button><br><br>
+                </form> 
 
                 <br>
             <div>
@@ -54,29 +57,21 @@ include "db_conn.php";
         </div>
 
         <?php
-            if(isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['repeatP'])) {
+            session_start();
+            include "db_conn.php";
+            include 'utils.php';
 
-                function convalida($data){
-                    $data = trim($data); //Rimuove eventuali spazi all'inizio e alla fine
-                    $data = stripslashes($data); //Toglie eventuali slash
-                    $data = htmlspecialchars($data); //Rimuove caratteri speciali
-                    return $data;
-                }
-
-                
-            }
+        if(isset($_POST['btnRegister'])){
 
             $username = convalida($_POST['uname']);
             $pass = convalida($_POST['password']);
             $rPass = convalida($_POST['repeatP']);
-            
-            
             //CONTROLLO CHE USERNAME E PASSWORD NON SIANO VUOTI; IN CASO DISPLAY UN ERRORE
             if(empty($username)){
                 header("Location: register.php?error=Username è richiesto");
                 exit();
             }
-            
+
             else if(empty($pass) || empty($rPass)){
                 header("Location: register.php?error=Password è richiesta");
                 exit();
@@ -98,10 +93,8 @@ include "db_conn.php";
                 }
                 else{
                     if($stmt = $conn->prepare('INSERT INTO utente (Username, Password) VALUE(?, ?)')){
-                        //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                        //$password = password_hash(md5($_POST['password']));
-                        $password = md5($_POST['password']);
 
+                        $password = md5($_POST['password']);
                         $stmt->bind_param('ss', $username, $password);
                         $stmt->execute();
 
@@ -123,6 +116,7 @@ include "db_conn.php";
                 header("Location: register.php?=error= ERRORE");
                 exit();
             }
+        }
         ?>
     </body>
 </html>

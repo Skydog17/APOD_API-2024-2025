@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "db_conn.php";
+include "utils.php";
 
 $data = $_GET['dataInput'];
 $url = $_GET['url'];
@@ -24,7 +25,7 @@ if($stmt = $conn->prepare('SELECT Utente_Id, Data FROM preferito WHERE Utente_Id
             $stmt->bind_param('sssss', $data, $_SESSION['Id'], $url, $titolo, $desc);
             $stmt->execute();
 
-            //header("Location: home.php");
+            header("Location: home.php?data=".$data);
             exit();
         }
     }
@@ -34,6 +35,8 @@ if($stmt = $conn->prepare('SELECT Utente_Id, Data FROM preferito WHERE Utente_Id
     header("Location: home.php?=error= ERRORE");
     exit();
 }
+
+
 
 ?>
 

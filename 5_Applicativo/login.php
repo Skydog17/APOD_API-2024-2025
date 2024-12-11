@@ -1,16 +1,7 @@
 <?php
 session_start();
 include "db_conn.php";
-
-if(isset($_POST['uname']) && isset($_POST['password'])) {
-
-    function convalida($data){
-        $data = trim($data); //Rimuove eventuali spazi all'inizio e alla fine
-        $data = stripslashes($data); //Toglie eventuali slash
-        $data = htmlspecialchars($data); //Rimuove caratteri speciali
-        return $data;
-    }
-}
+include "utils.php";
 
 $username = convalida($_POST['uname']);
 $pass = convalida($_POST['password']);
@@ -25,8 +16,7 @@ else if(empty($pass)){
     header("Location: index.php?error=Password è richiesta");
     exit();
 }
-//$pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-//$pass = password_hash(md5($_POST['password']));
+
 $pass = md5($_POST['password']);
 
 $sql = "SELECT * FROM utente WHERE Username='$username' AND  Password='$pass'"; //QUERY DA FARE AL DATABASE

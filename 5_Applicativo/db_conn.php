@@ -10,7 +10,7 @@ if(!$conn){
     exit("Errore el connettersi al database");
 }
 
-function getConn(){
+/*function getConn(){
     $sname = "localhost";
     $user = "root";
     $password = "";
@@ -20,5 +20,5 @@ function getConn(){
         exit("Errore el connettersi al database");
     }
     return $conn;
-}
+}*/
 ?>
