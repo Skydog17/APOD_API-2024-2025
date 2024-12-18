@@ -3,7 +3,7 @@
 $sname = "localhost";
 $user = "root";
 $password = "";
-$dbName = "APOD";
+$dbName = "apod";
 
 $conn = mysqli_connect($sname, $user, $password, $dbName);
 if(!$conn){

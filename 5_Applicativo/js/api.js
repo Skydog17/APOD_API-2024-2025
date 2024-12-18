@@ -1,5 +1,11 @@
 /////////////////////////// MAIN FUNCTION ///////////////////////////
+
+//ESEMPIO QUERY = https://api.nasa.gov/planetary/apod?api_key=CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l&date=2024-10-23
+
 function richiesta(d){ //d sarà una stringa
+    var url = "https://api.nasa.gov/planetary/apod?api_key=";
+    var api_key = "CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l";
+    //ESEMPIO QUERY = https://api.nasa.gov/planetary/apod?api_key=CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l&date=2024-10-23
     document.getElementsByClassName("error").innerHTML="";
     defaultSize("immagine", "iframe");
     defaultSize("immagine-1", "iframe-1");
@@ -7,9 +13,6 @@ function richiesta(d){ //d sarà una stringa
     var req1 = new XMLHttpRequest(); //Request per la foto centrale
     var req2 = new XMLHttpRequest(); //Request per la foto centrale
     var req3 = new XMLHttpRequest(); //Request per la foto centrale
-    var url = "https://api.nasa.gov/planetary/apod?api_key=";
-    var api_key = "CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l";
-    //ESEMPIO QUERY = https://api.nasa.gov/planetary/apod?api_key=CH0wsKM4d6YOpvI7WI5tsulO3snZ5ybxueUIyb7l&date=2024-10-23
 
     if(d==''){
         d = new Date();
@@ -48,7 +51,7 @@ function richiesta(d){ //d sarà una stringa
             var response1 = JSON.parse(req1.responseText); //JSON con la risposta
             document.getElementById("titolo_img").innerHTML = response1.title; //modifica il titolo
 
-            formatDataEU(response1.date);
+            document.getElementById("data_immagine").innerHTML = formatDataEU(response1.date);
             document.getElementById("descrizione_immagine").innerHTML = formattaStringa(response1.explanation);
 
             scegliMedia("immagine", "iframe", response1);
@@ -71,8 +74,6 @@ function richiesta(d){ //d sarà una stringa
     req2.addEventListener("load", function(){
         if(req2.status == 200 && req2.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response2 = JSON.parse(req2.responseText); //JSON con la risposta
-            /**document.getElementById("immagine-1").style.visibility = "visible";
-            document.getElementById("immagine-1").src = src(response2); //modifica il src dell'immagine*/
             scegliMedia("immagine-1", "iframe-1", response2);
         }
         else{
@@ -87,8 +88,6 @@ function richiesta(d){ //d sarà una stringa
     req3.addEventListener("load", function(){
         if(req3.status == 200 && req3.readyState == 4){ //Se non restituisce un codice di errore. 200 richiesta con successo e 4 operazione completata
             var response3 = JSON.parse(req3.responseText); //JSON con la risposta
-            /**document.getElementById("immagine1").style.visibility = "visible";
-            document.getElementById("immagine1").src = src(response3); //modifica il src dell'immagine //modifica il src dell'immagine*/
             scegliMedia("immagine1", "iframe1", response3);
         }
         else{

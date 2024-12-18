@@ -64,7 +64,12 @@
                                             <th ".$css.">".$date."</th>
                                             <th ".$cssImg.">".$media."</th>
                                             <th ".$css.">".$titolo."</th>
-                                            <th ".$cssWider.">".$desc."... <br><a href='home.php'>See more</a></th>
+                                            <th ".$cssWider.">".$desc."... <br> 
+                                                <form action='seeMore.php' method='post'>
+                                                    <input type='date' id='dateDesc' name='dateDesc' value='".$date."' style='visibility:hidden;'><br>
+                                                    <button id='btnSee' name='btnSee' type='submit'>See more...</button>
+                                                </form>
+                                            </th>
                                             <th ".$css."> 
                                                 <form action='removeCronologia.php' method='post'>
                                                     <input type='text' id='dataInput' name='dataInput' value=".$date." style='visibility:hidden;'><br>
@@ -77,7 +82,7 @@
                     echo $table;
                 } 
                 else{
-                    echo "<hr><br><br><center><h1>Nessuna foto Visualizzata!</h1><center><br><br><hr>";
+                    echo "<hr><br><br><center><h1>Nessuna foto cercata!</h1><center><br><br><hr>";
                 }
             ?>
 

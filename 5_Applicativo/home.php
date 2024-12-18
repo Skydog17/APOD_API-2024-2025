@@ -13,13 +13,26 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
 
-    <body onload="richiesta('')">
+<?php
+    session_start();
+    require 'utils.php';
+    if(isset($_COOKIE['date'])){
+?>
+   <body onload="richiesta('<?php echo $_COOKIE['date'] ?>')">
+<?php
+    }
+    else{
+?>
+     <body onload="richiesta('')">
+<?php
+    }
+?>
         <div id="contenitore">
             <header>
                 <button id="apriMenu" onclick="openMenu()">Menu</button>
                 <div id="menu">
 <?php
-    session_start();
+
     if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
 ?>
                     <a href="logout.php"><button>Logout</button></a><br><br>
@@ -82,7 +95,7 @@ else{
                     <?php
                         if(isset($_SESSION['Id']) && isset($_SESSION['Username'])) {
                     ?>
-                        <form action="addPreferiti.php" method="get">
+                        <form action="addPreferiti.php" method="post">
                             <div id="inputDaNascondere">
                                 <input type="text" id="url" name="url" value=" " style="visibility:hidden;">
                                 <input type="text" id="dataInput" name="dataInput" value=" " style="visibility:hidden;">
@@ -116,11 +129,6 @@ else{
                 <div id="desc">
                     <div id="descrizione">
                         <p id="descrizione_immagine"></p>
-                    </div>
-                    <div id="filtro">
-                        <p>Inserisci la data da cercare, deve essere in questo range di date:<br>16.06.1995 - Oggi<br>ATTENZIONE, nel 1995 non tutti i giorni avevano una foto</p>
-                        <label>Data <label><input type='date' id='dataFiltro'><button onclick="avviaRicerca()">Cerca</button>
-                        <br><br>
                     </div>
                 </div>
                 

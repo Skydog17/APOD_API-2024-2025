@@ -22,13 +22,13 @@ CREATE TABLE preferito (
 
 CREATE TABLE cronologia (
   Id INT AUTO_INCREMENT,
-  Utente_Id INT,
+  Id_Utente INT,
   Data DATE ,
   url VARCHAR(255) ,
   Titolo VARCHAR(255) ,
   Descrizione VARCHAR(255) ,
-  PRIMARY KEY (Id, Utente_Id),
-  FOREIGN KEY (Utente_Id)
+  PRIMARY KEY (Id, Id_Utente),
+  FOREIGN KEY (Id_Utente)
   REFERENCES Utente (Id)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION

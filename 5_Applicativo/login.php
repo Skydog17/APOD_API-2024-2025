@@ -21,19 +21,24 @@ $pass = md5($_POST['password']);
 
 $sql = "SELECT * FROM utente WHERE Username='$username' AND  Password='$pass'"; //QUERY DA FARE AL DATABASE
 $result = mysqli_query($conn, $sql);
-
-if(mysqli_num_rows($result) == 1) {
-    $row = mysqli_fetch_assoc($result);
-    if($row['Username'] === $username){ //Se password e nome utente sono IDENTICI a $pass  $uname
-        echo "Login effetuato con successo!";
-        $_SESSION['Username'] = $row['Username'];
-        $_SESSION['Password'] = $row['Password'];
-        $_SESSION['Id'] = $row['Id'];
-        header("Location: home.php");
-        exit();
+if(gettype($result) == "mysqli_result" || gettype($result) == "object"){
+    if(mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        if($row['Username'] === $username){ //Se password e nome utente sono IDENTICI a $pass  $uname
+            echo "Login effetuato con successo!";
+            $_SESSION['Username'] = $row['Username'];
+            $_SESSION['Password'] = $row['Password'];
+            $_SESSION['Id'] = $row['Id'];
+            header("Location: home.php");
+            exit();
+        }
+        else{
+            header("Location: index.php?error=Password errata ");
+            exit();
+        }
     }
     else{
-        header("Location: index.php?error=Password errata ");
+        header("Location: index.php?error=Username o password errata");
         exit();
     }
 }
@@ -41,3 +46,4 @@ else{
     header("Location: index.php?error=Username o password errata");
     exit();
 }
+

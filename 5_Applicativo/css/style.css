@@ -31,12 +31,13 @@ a{
 }
 
 img{
-    height: auto;
-    width: auto;
+    height: 400px;
+    width: 600px;
     border: solid 1px white;
     margin:0%;
     max-width: 600px;
     max-height: 400px;
+    src:"../img/error.jpg";
 }
 
 button{
@@ -110,8 +111,6 @@ button{
 }
 
 #filtro{
-    visibility: hidden;
-    position: absolute;
     width: 100%;
     background-color: #000035;
 }
